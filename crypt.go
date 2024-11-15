@@ -13,6 +13,29 @@ import (
 	"io"
 )
 
+type Crypt struct {
+}
+
+// Encrypt encrypts a string using AES
+func (s *Crypt) Encrypt(plainText []byte, key []byte) ([]byte, error) {
+	return Encrypt(plainText, key)
+}
+
+// Decrypt decrypts a string using AES
+func (s *Crypt) Decrypt(cipherText []byte, key []byte) ([]byte, error) {
+	return Decrypt(cipherText, key)
+}
+
+// EncodeText encodes plain text with a key and returns an encrypted and base64-encoded string
+func (s *Crypt) EncodeText(plainText string, key []byte) string {
+	return EncodeText(plainText, key)
+}
+
+// DecodeText decodes an encypted base64-encoded text with a key and returns a decrypted string
+func (s *Crypt) DecodeText(encoded string, key []byte) string {
+	return DecodeText(encoded, key)
+}
+
 // Encrypt encrypts a string using AES
 func Encrypt(plainText []byte, key []byte) ([]byte, error) {
 	c, err := aes.NewCipher(key)
